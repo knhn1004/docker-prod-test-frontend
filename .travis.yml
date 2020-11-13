@@ -1,0 +1,11 @@
+language: generic
+# for docker
+sudo: required
+services:
+  - docker
+
+before_install:
+  - docker build -t chz1004/docker-prod-test-frontend -f Dockerfile.dev .
+
+script:
+  - docker run -e CI=true chz1004/docker-prod-test-frontend npm run test
